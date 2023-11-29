@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ts-project';
+  title = 'Typescript-project';
+  constructor () {
+    setTimeout(() => {
+      this.title = "Changed Title";
+    }, 2000);
+  }
 }
