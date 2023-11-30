@@ -9,6 +9,7 @@ import { TodoType } from 'src/app/TodoType';
 export class TodoItemComponent implements OnInit {
   @Input() todo!: TodoType;
   @Output() itemToBeDeleted: EventEmitter<TodoType> = new EventEmitter();
+  @Output() setStatusOfItem: EventEmitter<TodoType> = new EventEmitter();
 
   constructor() { }
 
@@ -18,5 +19,10 @@ export class TodoItemComponent implements OnInit {
     console.log(val);
     console.log("delete event emitted");
     this.itemToBeDeleted.emit(val);
+  }
+
+  setStatus(val : TodoType) {
+    // val.active = !val.active;
+    this.setStatusOfItem.emit(val);
   }
 }

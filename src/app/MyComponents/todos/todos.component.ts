@@ -9,34 +9,16 @@ import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 export class TodosComponent implements OnInit {
   @Input() itemToBeAdded: EventEmitter<TodoType> = new EventEmitter();
 
-  todos:TodoType[] | undefined;
-  constructor() { 
-    this.todos = [
-      {
-        sno : 1,
-        title : "This is title 1",
-        desc : "Description",
-        active : true
-      },
-      {
-        sno : 2,
-        title : "This is title 2",
-        desc : "Description",
-        active : true
-      },
-      {
-        sno : 3,
-        title : "This is title 3",
-        desc : "Description",
-        active : true
-      },
-      {
-        sno : 4,
-        title : "This is title 4",
-        desc : "Description",
-        active : true
-      }
-    ]
+  todos: TodoType[] | undefined;
+  localItem: string | null;
+
+  constructor() {
+    this.localItem = localStorage.getItem("todos");
+    if (this.localItem == null || this.localItem == undefined) {
+      this.todos = [];
+    } else {
+      this.todos = JSON.parse(this.localItem);
+    }
   }
 
   ngOnInit(): void {
@@ -46,13 +28,23 @@ export class TodosComponent implements OnInit {
     // console.log(item);
     const index = this.todos?.indexOf(item);
     if (index !== -1 && this.todos && index !== undefined) {
-        this.todos.splice(index, 1);
-        console.log("item deleted");
+      this.todos.splice(index, 1);
+      console.log("item deleted");
+      localStorage.setItem("todos", JSON.stringify(this.todos));
     }
   }
 
   addItem(item: TodoType) {
-    console.log(item);
+    console.log("add item" + item);
     this.todos?.push(item);
+    localStorage.setItem("todos", JSON.stringify(this.todos));
+  }
+
+  toggleItemStatus(item: TodoType) {
+    const index = this.todos?.indexOf(item);
+    if (index !== -1 && this.todos && index !== undefined) {
+      this.todos[index].active = !this.todos[index].active;
+      localStorage.setItem("todos", JSON.stringify(this.todos));
+    }
   }
 }
