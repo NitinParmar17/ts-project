@@ -1,11 +1,13 @@
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TodosComponent } from './MyComponents/todos/todos.component';
+import { UserListComponent } from './MyComponents/user-list/user-list.component';
 import { AboutComponent } from './MyComponents/about/about.component';
 
 const routes: Routes = [
   {path: '', component : TodosComponent},
-  {path: 'about', component : AboutComponent} 
+  {path: 'about', component : AboutComponent}, 
+  {path: 'users', component : UserListComponent} 
 ];
 
 @NgModule({

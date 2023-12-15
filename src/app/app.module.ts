@@ -8,6 +8,9 @@ import { TodoItemComponent } from './MyComponents/todo-item/todo-item.component'
 import { AddTodoComponent } from './MyComponents/add-todo/add-todo.component';
 import { FormsModule } from '@angular/forms';
 import { AboutComponent } from './MyComponents/about/about.component';
+import { HttpClientModule } from '@angular/common/http';
+import { UserListComponent } from './MyComponents/user-list/user-list.component';
+
 
 @NgModule({
   declarations: [
@@ -15,12 +18,14 @@ import { AboutComponent } from './MyComponents/about/about.component';
     TodosComponent,
     TodoItemComponent,
     AddTodoComponent,
-    AboutComponent
+    AboutComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
